@@ -1,4 +1,4 @@
-package felipe.rhydan.sistema_chamados;
+package sistema_chamados;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
