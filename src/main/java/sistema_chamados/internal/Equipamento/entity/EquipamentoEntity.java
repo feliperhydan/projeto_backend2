@@ -30,7 +30,7 @@ public class EquipamentoEntity {
     @JoinColumn(name = "cliente_id", nullable = false)
     private ClienteEntity clienteEntity;
 
-    public EquipamentoEntity(String tipo, String marca, String modelo) {
+    public EquipamentoEntity(String tipo, String marca, String modelo, String numeroSerie) {
         this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
