@@ -1,13 +1,15 @@
 package sistema_chamados.internal.Equipamento.entity;
 
-import lombok.*;
-import sistema_chamados.internal.Cliente.entity.ClienteEntity;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import sistema_chamados.internal.Cliente.entity.ClienteEntity;
 
-@Table(name = "equipamentos")
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@Getter
+@Table(name = "equipamentos")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class EquipamentoEntity {
 
     @Id
@@ -17,18 +19,18 @@ public class EquipamentoEntity {
     @Column(nullable = false, length = 50)
     private String tipo;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 100)
     private String marca;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 100)
     private String modelo;
 
-    @Column(nullable = false, unique = true, length = 150)
+    @Column(name = "numero_serie", length = 100)
     private String numeroSerie;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cliente_id", nullable = false)
-    private ClienteEntity clienteEntity;
+    private ClienteEntity cliente;
 
     public EquipamentoEntity(String tipo, String marca, String modelo, String numeroSerie) {
         this.tipo = tipo;
@@ -37,13 +39,7 @@ public class EquipamentoEntity {
         this.numeroSerie = numeroSerie;
     }
 
-    public void alterarModelo(String modelo){
-        this.modelo = modelo;
-    }
-    public void alterarMarca(String marca) {
-        this.marca = marca;
-    }
-    public void alterarTipo(String tipo){
-        this.tipo = tipo;
+    public void associarCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
 }

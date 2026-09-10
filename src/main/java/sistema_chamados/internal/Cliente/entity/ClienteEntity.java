@@ -1,15 +1,17 @@
 package sistema_chamados.internal.Cliente.entity;
 
-import lombok.*;
-import sistema_chamados.internal.Equipamento.entity.EquipamentoEntity;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import sistema_chamados.internal.Equipamento.entity.EquipamentoEntity;
 
 import java.util.List;
 
 @Entity
-@Table(name = "clientes")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "clientes")
 public class ClienteEntity {
 
     @Id
@@ -19,34 +21,37 @@ public class ClienteEntity {
     @Column(nullable = false, length = 150)
     private String nome;
 
-    @Column(nullable = false, unique = true, length = 11)
+    @Column(nullable = false, length = 11, unique = true)
     private String cpf;
 
-    @Column(nullable = false, unique = true, length = 150)
+    @Column(nullable = false, length = 150, unique = true)
     private String email;
 
     @Column(nullable = false)
-    private boolean ativo = true;
+    private boolean ativo= true;
 
     @OneToMany(mappedBy = "cliente")
-    private List<EquipamentoEntity> equipamentoEntities;
+    private List<EquipamentoEntity> equipamentos;
 
     public ClienteEntity(String nome, String cpf, String email) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
     }
+    public void adicionarEquipamento(EquipamentoEntity equipamento) {
+        equipamentos.add(equipamento);
+        equipamento.associarCliente(this);
+    }
 
     public void alterarNome(String nome) {
         this.nome = nome;
     }
 
-    public void ativar(){
+    public void ativar() {
         this.ativo = true;
     }
 
-    public void desativar(){
+    public void inativar() {
         this.ativo = false;
     }
-
 }
