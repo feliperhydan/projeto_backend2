@@ -4,10 +4,10 @@ import lombok.*;
 import sistema_chamados.internal.Cliente.entity.ClienteEntity;
 import jakarta.persistence.*;
 
-@Entity
 @Table(name = "equipamentos")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class EquipamentoEntity {
 
     @Id
@@ -40,7 +40,7 @@ public class EquipamentoEntity {
     public void alterarModelo(String modelo){
         this.modelo = modelo;
     }
-    public void alterarMarca(String marca){
+    public void alterarMarca(String marca) {
         this.marca = marca;
     }
     public void alterarTipo(String tipo){
