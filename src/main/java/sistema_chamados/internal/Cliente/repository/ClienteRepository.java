@@ -1,13 +1,9 @@
-package sistema_chamados.internal.Cliente.repository;
+package sistema_chamados.internal.cliente.repository;
 
+import sistema_chamados.internal.cliente.entity.ClienteEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import sistema_chamados.internal.Cliente.entity.ClienteEntity;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<ClienteEntity, Long> {
-
-    boolean existsByCpf(String cpf);
-
-    boolean existsByEmail(String email);
 }

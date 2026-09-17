@@ -1,30 +1,27 @@
-package sistema_chamados.internal.Cliente.controller;
+package sistema_chamados.internal.cliente.controller;
 
+import sistema_chamados.internal.cliente.dto.CriarClienteRequest;
+import sistema_chamados.internal.cliente.dto.CriarClienteResponse;
+import sistema_chamados.internal.cliente.service.ClienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import sistema_chamados.internal.Cliente.dto.ClienteRequest;
-import sistema_chamados.internal.Cliente.entity.ClienteEntity;
-import sistema_chamados.internal.Cliente.service.ClienteService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("clientes")
 @RequiredArgsConstructor
 public class ClienteController {
 
     private final ClienteService clienteService;
 
     @PostMapping
-    public ResponseEntity<ClienteEntity> cadastrar(
-            @Valid @RequestBody ClienteRequest request
-    ) {
-
-        ClienteEntity cliente = clienteService.cadastrar(request);
-
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(cliente);
+    public ResponseEntity<CriarClienteResponse> criar(@Valid @RequestBody CriarClienteRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED).
+                body(this.clienteService.criarCliente(request));
     }
 }

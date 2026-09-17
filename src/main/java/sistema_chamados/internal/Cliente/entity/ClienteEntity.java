@@ -1,10 +1,10 @@
-package sistema_chamados.internal.Cliente.entity;
+package sistema_chamados.internal.cliente.entity;
 
+import sistema_chamados.internal.equipamento.entity.EquipamentoEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import sistema_chamados.internal.Equipamento.entity.EquipamentoEntity;
 
 import java.util.List;
 
